@@ -1,16 +1,16 @@
 ;WhiteList
-
-RunWait C:\Users\Daniel\Documents\AutoHotKey\scripts\iniScript.ahk
-IniRead, count, C:\Users\Daniel\Documents\AutoHotKey\scripts\scriptTag.ini, General, 0
+getIniInfo(count)
 Loop
 {
-  
-  IniRead, scriptName, C:\Users\Daniel\Documents\AutoHotKey\scripts\scriptTag.ini, General, %count%
-  run C:\Users\Daniel\Documents\AutoHotKey\scripts\%scriptName%
-  count := count - 1
-  if count = 0
-    break
+  getIniInfo(scriptName,,count)
+  getIniInfo(scriptState, 4, scriptName)
+  if scriptState = 1
+  {
+    run, %scriptName%, %Path%,, PID
+    IniWrite, %PID%, %Path%\scriptTag.ini, PID, %scriptName%
+  }
+  else
+    IniWrite, nil, %Path%\scriptTag.ini, PID, %scriptName%
 
-}
-ExitApp
-
+  count--
+} Until count = 0
