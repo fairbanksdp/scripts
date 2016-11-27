@@ -1,3 +1,3 @@
 ;General
 
-:*:autodir::C:\Users\Daniel\Documents\AutoHotKey\scripts
+:*:autodir::%A_ScriptDir%
