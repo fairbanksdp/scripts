@@ -4,11 +4,11 @@ getIniInfo(count)
 Loop
 {
   getIniInfo(scriptName,,count)
-  getIniInfo(PID, 6, scriptName)
+  getIniInfo(PID, "PID", scriptName)
   if PID != "nil" 
   {
-    IniWrite, "nil", scriptTag.ini, PID, %scriptName%
     Process, Close, %PID%
+    setIniInfo("nil", "PID", scriptName)
   }
   count--
 } Until count = 0
