@@ -1,16 +1,18 @@
-;General
-
+;General | true, YouTube, Steam | true `Blocks specified windows
+#Include msgReceiver.ahk 
 Loop {
-  If A_Hour < 20 
-  {
-    WinGetActiveTitle, title
-    If title contains YouTube 
-      WinClose %title%
-  } 
-  Else 
-    ExitApp
-}
-
-
+  Sleep, 250
+  WinGetActiveTitle, title
+  filter :=  optionList[mod(A_Index, optionList.length())+1]   
+  If title contains %filter% 
+    WinClose %title%
+} Until A_Hour > 19
+ExitApp
+return
+;SetTimer, RemoveToolTip, 5000
+RemoveToolTip:
+SetTimer, RemoveToolTip, Off
+ToolTip
+return
 
 
