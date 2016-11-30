@@ -8,7 +8,7 @@ Loop
   {
     run, %scriptName%, %Path%,, PID
     setIniInfo(PID, "PID", scriptName)
-    getIniInfo(options, "scriptOptions", scriptName)
+    getIniInfo(options, "ScriptOptions", scriptName)
     if (options)
     {
       sleep 200

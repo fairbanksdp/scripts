@@ -20,7 +20,7 @@ getIniInfo(count,2)
 Loop
 {
   getIniInfo(fileName,2,count)
-  getIniInfo(scriptOptions, "scriptOptions", filesName)
+  getIniInfo(ScriptOptions, "ScriptOptions", filesName)
   getIniInfo(descrip, "Description", fileName) 
   StringTrimRight, scriptName, fileName, 4
   std_y += stdC_y
@@ -31,7 +31,7 @@ Loop
     descPosX := std_x + 100
     Gui, add, Text, y%std_y% x%descPosX%, %description%
   }
-  if (%scriptOptions%)
+  if (%ScriptOptions%)
   {
     IniRead, opStr, %Ini%, %fileName%
     StringSplit, opSudo, opStr, `n, A_Space
@@ -66,7 +66,7 @@ Loop
 {
   getIniInfo(fileName,,count)
   getIniInfo(scriptState,4,fileName)
-  getIniInfo(scriptOptions, "scriptOptions", fileName)
+  getIniInfo(ScriptOptions, "ScriptOptions", fileName)
   StringTrimRight, scriptName, fileName, 4
   scriptState%scriptID% := scriptState
   std_y += stdC_y
@@ -79,7 +79,7 @@ Loop
     descPosX := std_x + 100
     Gui, add, Text, y%std_y% x%descPosX%, %description%
   }
-  if (%scriptOptions%)
+  if (%ScriptOptions%)
   {
     IniRead, opStr, %Ini%, %fileName%
     StringSplit, opSudo, opStr, `n, A_Space
@@ -127,7 +127,7 @@ checkChange:
   GuiControlGet, fState,, %A_GuiControl%
   GuiControlGet, fName,, %A_GuiControl%, Text
   key = % fName . ".ahk"
-  setIniInfo(fState, "OptionalScripts", key)
+  setIniInfo(fState, "ScriptStates", key)
 }
 return
 radioChange:
@@ -181,7 +181,7 @@ getIniInfo(count,2)
 Loop
 {
   getIniInfo(fileName,2,count)
-  getIniInfo(scriptOptions, "scriptOptions", filesName)
+  getIniInfo(ScriptOptions, "ScriptOptions", filesName)
   getIniInfo(descrip, "Description", fileName) 
   StringTrimRight, scriptName, fileName, 4
   std_y += stdC_y
@@ -192,7 +192,7 @@ Loop
     descPosX := std_x + 100
     Gui, add, Text, y%std_y% x%descPosX%, %description%
   }
-  if (%scriptOptions%)
+  if (%ScriptOptions%)
   {
     IniRead, opStr, %Ini%, %fileName%
     StringSplit, opSudo, opStr, `n, A_Space

@@ -49,7 +49,7 @@ Loop, Files, %A_WorkingDir%\*.ahk
       setIniInfo(opState, A_LoopFileName, options%n%)
     } Until options0 = n
   }
-  setIniInfo(options1, "scriptOptions", A_LoopFileName)
+  setIniInfo(options1, "ScriptOptions", A_LoopFileName)
 
   StringSplit, descript, tags3, ``
   desc := Trim(descript1)
