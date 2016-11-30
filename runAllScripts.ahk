@@ -9,17 +9,16 @@ Loop
     run, %scriptName%, %Path%,, PID
     setIniInfo(PID, "PID", scriptName)
     getIniInfo(options, "scriptOptions", scriptName)
-    ;msgbox % options
     if (options)
     {
       sleep 200
-      IniRead, opStr, %Ini%, %opSection%
+      IniRead, opStr, %Ini%, %scriptName%
       StringSplit, opSudo, opStr, `n, A_Space
       opCount = 0
       Loop
       {
         opCount++
-        StringSplit, ops, opSudo%opCount%, `=,
+        StringSplit, ops, opSudo%opCount%, `=
 	if (ops2)
 	{
           result := Send_WM_COPYDATA(ops1, scriptName)
