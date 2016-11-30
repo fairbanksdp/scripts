@@ -3,7 +3,7 @@ global Path := A_ScriptDir
 global Ini := A_ScriptDir . "\scriptTag.ini"
 global sectionStr
 global sectionOps := ["General", "WhiteList", "Testing", "OptionalScripts", "PID", "scriptOptions", "Description"]
-
+global holder
 getIniInfo(byref outVar, section = 1, key = 0)
 {
   global
@@ -29,6 +29,11 @@ sectionName(section)
 {
   if sectionOps.HasKey(section)
     sectionStr := sectionOps[section]
-  else
-    sectionStr := section
+  else {
+    IniRead, holder, %Ini%, SectionMapping, %section%, -1
+    if holder != -1
+      sectionStr := holder
+    else
+      sectionStr := section
+  }
 }
