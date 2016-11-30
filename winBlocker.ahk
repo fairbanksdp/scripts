@@ -9,10 +9,12 @@ Loop {
 } Until A_Hour > 19
 ExitApp
 return
+/*
+;#Persistent
 ;SetTimer, RemoveToolTip, 5000
 RemoveToolTip:
 SetTimer, RemoveToolTip, Off
 ToolTip
 return
-
+*/
 
