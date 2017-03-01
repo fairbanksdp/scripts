@@ -3,7 +3,7 @@ getIniInfo(count)
 Loop
 {
   getIniInfo(scriptName,,count)
-  getIniInfo(scriptState, 4, scriptName)
+  getIniInfo(scriptState, "R_ss", scriptName)
   if scriptState = 1
   {
     run, %scriptName%, %Path%,, PID

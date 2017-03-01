@@ -1,4 +1,4 @@
-;Testing
+;Header
 global optionList := [] 
 global END_OPS_MSG := "END_OF_MSG" 
 OnMessage(0x4a, "Receive_WM_COPYDATA")

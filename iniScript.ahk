@@ -3,12 +3,17 @@
 #Include iniCat.ahk
 genKey := 0 
 whiteKey := 0
+headerKey := 0
 testKey := 0
-resetIniInfo()
-resetIniInfo(2)
-resetIniInfo(3)
-resetIniInfo(6)
-resetIniInfo(7)
+otherKey := 0 
+resetIniInfo("TS_g")
+resetIniInfo("TS_h")
+resetIniInfo("TS_w")
+resetIniInfo("TS_t")
+resetIniInfo("TS_o")
+
+resetIniInfo("TO_so")
+resetIniInfo("TO_d")
 
 Loop, Files, %A_WorkingDir%\*.ahk
 {
@@ -23,15 +28,22 @@ Loop, Files, %A_WorkingDir%\*.ahk
   if section = General
   {
     count := ++genKey
-    getIniInfo(scriptState, 4, A_LoopFileName)
+    getIniInfo(scriptState, "R_ss", A_LoopFileName)
     if ((scriptState != 0) AND (scriptState != 1))
       scriptState := 0
-    setIniInfo(scriptState, 4, A_LoopFileName)
-  }
+    setIniInfo(scriptState, "R_ss", A_LoopFileName)
+  } 
   else if section = WhiteList
     count := ++whiteKey
+  else if section = Header
+     count := ++headerKey
+  else if section = Testing
+      count := ++testKey
   else
-    count := ++testKey
+  {
+    count := ++otherKey
+    section = Other
+  }
   setIniInfo(A_LoopFileName, section, count)
   
   StringSplit, options, tags2, `,, %A_Space%
@@ -59,9 +71,11 @@ Loop, Files, %A_WorkingDir%\*.ahk
     setIniInfo(descript2, A_LoopFileName, "Description")
   setIniInfo(desc, "Description", A_LoopFileName)
 }
-setIniInfo(genKey)
-setIniInfo(whiteKey, 2)
-setIniInfo(testKey, 3)
+setIniInfo(genKey, "TS_g")
+setIniInfo(whiteKey, "TS_w")
+setIniInfo(headerKey, "TS_h")
+setIniInfo(testKey, "TS_t")
+setIniInfo(otherKey, "TS_o")
 
 ExitApp
 

@@ -1,4 +1,4 @@
-;General | true, YouTube, Steam | true `Blocks specified windows
+;General | true, YouTube, Steam, Discord | true `Blocks specified windows
 #Include msgReceiver.ahk 
 Loop {
   Sleep, 250

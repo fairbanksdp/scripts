@@ -1,8 +1,8 @@
-;Testing
+;Header
 global Path := A_ScriptDir
 global Ini := A_ScriptDir . "\scriptTag.ini"
 global sectionStr
-global sectionOps := ["General", "WhiteList", "Testing", "ScriptStates", "PID", "ScriptOptions", "Description"]
+global sectionOps := ["General", "WhiteList", "Header", "Testing", "Other", "ScriptStates", "PID", "ScriptOptions", "Description"]
 global holder
 getIniInfo(byref outVar, section = 1, key = 0)
 {

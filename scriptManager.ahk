@@ -1,10 +1,11 @@
-;WhiteList | true, Restart'App
+;WhiteList | true, Restart_App
 #Include initForAll.ahk
 #Include iniCat.ahk
+#Include msgSender.ahk
 
 Gui, ScriptManager: New
 Gui, ScriptManager: -Resize -MaximizeBox
-Gui, add, Tab3,, General||Whitelist|Testing
+Gui, add, Tab3,, General||Whitelist|Header|Testing
 ; /*
 Gui, Tab, 2
 ;Gui, add, text, , test
@@ -16,11 +17,11 @@ stdC_y := 19
 std_x := 22
 std_y := 15 ; 34 
 scriptID := 0
-getIniInfo(count,2)
+getIniInfo(count,"TS_w")
 Loop
 {
-  getIniInfo(fileName,2,count)
-  getIniInfo(ScriptOptions, "ScriptOptions", filesName)
+  getIniInfo(fileName,"TS_w",count)
+  getIniInfo(ScriptOptions, "ScriptOptions", fileName)
   getIniInfo(descrip, "Description", fileName) 
   StringTrimRight, scriptName, fileName, 4
   std_y += stdC_y
@@ -44,10 +45,11 @@ Loop
       StringSplit, ops, opSudo%opCount%, `=,
       if ops1 != Description
       {
-        StringReplace, ops1, ops1, `', %A_Space%
         sState%ops1% = %ops2% 
+        StringReplace, ops1, ops1, _, %A_Space%
         Gui, Add, Button, x%opPosX% y%std_y% V%scriptName%opState%opCount% gWhitelistButton, %ops1%
-	opPosX := std_x + 40
+	      opPosX := std_x + 40
+        std_y += stdC_y/2
       }
     } Until opCount = opSudo0
   }
@@ -65,7 +67,7 @@ getIniInfo(count)
 Loop
 {
   getIniInfo(fileName,,count)
-  getIniInfo(scriptState,4,fileName)
+  getIniInfo(scriptState,"ScriptStates",fileName)
   getIniInfo(ScriptOptions, "ScriptOptions", fileName)
   StringTrimRight, scriptName, fileName, 4
   scriptState%scriptID% := scriptState
@@ -92,7 +94,7 @@ Loop
       {
         sState%ops1% = %ops2% 
         std_y += stdC_y
-	opPosX := std_x + 5
+	      opPosX := std_x + 5
         Gui, Add, Radio, x%opPosX% y%std_y% Group V%scriptName%opState%opCount% gradioChange, %ops1%
         GuiControl,, %scriptName%opState%opCount%, %ops2%
         ;GuiControlGet, pos, Pos, %scriptName%opState%opCount%
@@ -133,8 +135,8 @@ return
 radioChange:
 {
   GuiControlGet, sKey,, %A_GuiControl%, Text
-  sState%sKey%++
-  sState%sKey% := Mod(sState%sKey%, 2)
+  StringReplace, skey, skey, %A_Space%, _
+  sState%sKey% := Mod(++sState%sKey%, 2)
   if sState%sKey% = 0
   {
     Guicontrol,, %A_GuiControl%, 0
@@ -181,7 +183,7 @@ getIniInfo(count,2)
 Loop
 {
   getIniInfo(fileName,2,count)
-  getIniInfo(ScriptOptions, "ScriptOptions", filesName)
+  getIniInfo(ScriptOptions, "ScriptOptions", fileName)
   getIniInfo(descrip, "Description", fileName) 
   StringTrimRight, scriptName, fileName, 4
   std_y += stdC_y
